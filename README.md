@@ -9,3 +9,5 @@ Web client for **Rift.GG**, a League of Legends summoner lookup tool. Search pla
 ![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=flat&logo=reactquery&logoColor=white)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=reactrouter&logoColor=white)
 ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=flat&logo=zod&logoColor=white)
+
+**Related:** [rift-gg-be](https://github.com/thamal-n/rift-gg-be)

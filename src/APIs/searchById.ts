@@ -1,6 +1,8 @@
 import { DEFAULT_PLATFORM, type Platform } from "../constants/platforms";
 import { SearchSchema } from "../schemas/SearchSchema";
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
+
 type SearchParams = { platform?: Platform };
 
 type SearchByRiotId = SearchParams & {
@@ -27,7 +29,7 @@ function buildSearchUrl(params: SearchByRiotId | SearchByName) {
         searchParams.set("tagLine", tagLine);
     }
 
-    return `/api/search?${searchParams.toString()}`;
+    return `${API_BASE}/api/search?${searchParams.toString()}`;
 }
 
 async function readErrorMessage(response: Response): Promise<string> {
