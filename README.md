@@ -1,4 +1,7 @@
-<img src="public/app-icon.jpg" width="36" alt="Rift.GG" /> **Rift.GG — Frontend**
+<div style="display: flex; align-items: center; gap: 8px;">
+  <img src="public/app-icon.jpg" width="36" alt="Rift.GG" />
+  <strong>Rift.GG — Frontend</strong>
+</div>
 
 Web client for **Rift.GG**, a League of Legends summoner lookup tool. Search players by Riot ID (`GameName#Tag`) and view their profile, ranked stats, recent match history, and champion performance.
 
@@ -10,4 +13,4 @@ Web client for **Rift.GG**, a League of Legends summoner lookup tool. Search pla
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=reactrouter&logoColor=white)
 ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=flat&logo=zod&logoColor=white)
 
-**Related:** [rift-gg-be](https://github.com/thamal-n/rift-gg-be)
+**Related:** [rift-gg-be](https://github.com/thamal-n/rift.gg-be)
