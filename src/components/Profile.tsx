@@ -1,8 +1,9 @@
 import { Link, useLocation, useParams } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { search } from "../APIs/searchById";
 import type { Search } from "../schemas/SearchSchema";
 import { searchQueryKey } from "../utils/searchQueryKey";
-import ChampionsSection from "./ChampionsSection";
+import RecentSummarySection from "./RecentSummarySection";
 import MatchHistorySection from "./MatchHistorySection";
 import OverviewSection from "./OverviewSection";
 import ProfileSection from "./ProfileSection";
@@ -15,9 +16,19 @@ function Profile() {
     const decodedName = decodeURIComponent(gameName);
     const decodedTag = decodeURIComponent(tagLine);
 
-    const data =
+    const cachedData =
         (location.state as Search | null) ??
         queryClient.getQueryData<Search>(searchQueryKey(decodedName, decodedTag));
+
+    const { data, isRefetching, refetch } = useQuery({
+        queryKey: searchQueryKey(decodedName, decodedTag),
+        queryFn: () => search({ gameName: decodedName, tagLine: decodedTag }),
+        initialData: cachedData,
+        enabled: Boolean(decodedName && decodedTag),
+        staleTime: Infinity,
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+    });
 
     if (!data) {
         return (
@@ -46,11 +57,13 @@ function Profile() {
                     tagLine={data.tagLine}
                     profileIconId={data.profileIconId}
                     summonerLevel={data.summonerLevel}
+                    onRefresh={() => refetch()}
+                    isRefreshing={isRefetching}
                 />
                 <div className="mt-6 grid grid-cols-[1fr_3fr] items-stretch gap-6">
                     <RankedSection rank={data.rank} className="min-w-0" />
-                    <ChampionsSection
-                        matchHistory={data.matchHistory}
+                    <RecentSummarySection
+                        recentMatches={data.recentMatches}
                         className="min-w-0"
                     />
                     <OverviewSection

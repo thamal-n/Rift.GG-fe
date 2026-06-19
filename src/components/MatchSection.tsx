@@ -7,6 +7,7 @@ import {
 } from "../utils/ddragon";
 import { laneIconUrl } from "../utils/laneAssets";
 import DdragonIcon from "./DdragonIcon";
+import KdaDisplay from "./KdaDisplay";
 import MatchItemGrid from "./MatchItemGrid";
 
 type MatchSectionProps = {
@@ -34,10 +35,10 @@ function MatchSection({
 
     const resultClassName =
         match.result === "win"
-            ? "text-sm font-semibold text-blue-800"
+            ? "text-sm font-bold text-blue-800"
             : match.result === "loss"
-              ? "text-sm font-semibold text-red-400"
-              : "text-sm font-semibold text-zinc-400";
+              ? "text-sm font-bold text-red-400"
+              : "text-sm font-bold text-zinc-400";
 
     const championIconSrc =
         ddragonVersion && match.championKey
@@ -66,8 +67,8 @@ function MatchSection({
         >
             <div className="flex w-24 shrink-0 flex-col items-center justify-center gap-0.5">
                 <span className={resultClassName}>{resultLabel}</span>
-                <span className="text-xs text-zinc-400">{match.gameDuration}</span>
-                <span className="text-xs text-zinc-400">{match.gameEndTime}</span>
+                <span className="text-xs text-zinc-200">{match.gameDuration}</span>
+                <span className="text-xs text-zinc-300">{match.gameEndTime}</span>
             </div>
 
             <div className="flex shrink-0 items-center gap-1.5">
@@ -109,10 +110,10 @@ function MatchSection({
             </div>
 
             <div className="flex w-24 shrink-0 flex-col items-center justify-center gap-0.5">
-                <span className="text-sm font-medium text-green-100">{match.kda}</span>
-                <span className="text-xs text-zinc-400">{match.kdaDecimal}</span>
-                <span className="text-xs text-zinc-400">{match.cs}</span>
-                <span className="text-xs text-zinc-400">{match.killParticipation}</span>
+                <KdaDisplay kda={match.kda} />
+                <span className="text-xs text-zinc-200">{match.kdaDecimal}</span>
+                <span className="text-xs text-zinc-300">{match.cs}</span>
+                <span className="text-xs text-zinc-300">{match.killParticipation}</span>
             </div>
 
             <MatchItemGrid
